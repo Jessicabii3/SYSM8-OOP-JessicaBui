@@ -21,7 +21,7 @@ namespace FitTrack.Model
         public User? LoggedInUser { get; private set; }
 
         // Standardadministratör som skapas när applikationen startar
-        private AdminUser _defaultAdmin;
+        private readonly AdminUser _defaultAdmin;
 
         private ManageUser()
         {
@@ -84,6 +84,10 @@ namespace FitTrack.Model
         // Tar bort en användare från listan över registrerade användare
         public void RemoveUser(User user)
         {
+            if (user == LoggedInUser)
+            {
+                LoggedInUser = null; // Återställer den inloggade användaren om det är samma användare som tas bort
+            }
             RegisteredUsers.Remove(user);
         }
 
