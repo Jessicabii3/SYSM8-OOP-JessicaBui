@@ -13,6 +13,7 @@ namespace FitTrack.Helpers
         {
             if (password.Length < 8) return false;
             if (!Regex.IsMatch(password, @"\d")) return false; // Minst en siffra
+            if (!Regex.IsMatch(password, @"[A-Z]")) return false;
             if (!Regex.IsMatch(password, @"[\W_]")) return false; // Minst ett specialtecken
             return true;
         }
